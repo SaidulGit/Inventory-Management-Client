@@ -26,11 +26,14 @@ const Carusel = () => {
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
     >
+    <div>
+ 
       <SwiperSlide><img src={pic1} alt="" /></SwiperSlide>
       <SwiperSlide><img src={pic2} alt="" /></SwiperSlide>
       <SwiperSlide><img src={pic3} alt="" /></SwiperSlide>
       <SwiperSlide><img src={pic4} alt="" /></SwiperSlide>
       <SwiperSlide><img src={pic5} alt="" /></SwiperSlide>
+    </div>
    
       ...
     </Swiper>

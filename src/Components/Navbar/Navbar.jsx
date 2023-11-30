@@ -1,17 +1,52 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo1 from "../../assets/Chittagong.png"
 import logo2 from "../../assets/micro_png.png"
+import Swal from "sweetalert2";
+import { useContext } from "react";
+import { Context } from "../../Page/AuthProvider/AuthContext";
 
 const Navbar = () => {
+  const {user,logOut} = useContext(Context);
+  const handleLogOut = ()=> {
+    logOut()
+    .then(()=>{})
+    .catch(error => {
+      console.log(error)
+    })
+
+  }
+
   const Navitems = (
     <>
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "active text-base font-medium text-green-400" : ""
+          isPending ? "pending" : isActive ? "active text-base font-medium text-green-400 mr-3" : "  text-base font-medium mr-3"
         }
       >
         Home
+      </NavLink>
+      { user?.email ? 
+       <>
+       <li> <Link onClick={handleLogOut} to='/'>log out </Link> </li>
+       </> :
+       <li> <Link to='/login'>login </Link> </li>
+     }
+      <NavLink
+        to="/signUP"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active text-base font-medium text-green-400 mr-3" : " text-base font-medium mr-3"
+        }
+      >
+        Register
+      </NavLink>
+      <NavLink
+        to="/create"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active text-base font-medium text-green-400 mr-3" : " text-base font-medium mr-3"
+        }
+      >
+        Create Shop
       </NavLink>
     </>
   );
@@ -50,15 +85,23 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-     <button className="btn btn-success text-white"> <NavLink
-        to="/login"
-        className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "active text-base font-medium" : ""
-        }
-      >
-Home
-      </NavLink></button>
-      </div>
+          <h2 className="mr-2">{user && <p>{user.email} </p>}</h2>
+          {user ? (
+            <>
+              {" "}
+              <a onClick={handleLogOut} className="btn btn-success">
+                Log out
+              </a>{" "}
+            </>
+          ) : (
+            <>
+              {" "}
+              <Link to="/login">
+                <button className="btn btn-warning">Login</button>
+              </Link>{" "}
+            </>
+          )}
+        </div>
     </div>
   );
 };
