@@ -13,6 +13,13 @@ const Navbar = () => {
     .catch(error => {
       console.log(error)
     })
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Logout",
+      showConfirmButton: false,
+      timer: 1500
+    })
 
   }
 
@@ -21,7 +28,7 @@ const Navbar = () => {
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "active text-base font-medium text-green-400 mr-3" : "  text-base font-medium mr-3"
+          isPending ? "pending" : isActive ? "active text-base font-semibold text-orange-400 mr-3" : "  text-base font-medium mr-3"
         }
       >
         Home
@@ -35,15 +42,15 @@ const Navbar = () => {
       <NavLink
         to="/signUP"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "active text-base font-medium text-green-400 mr-3" : " text-base font-medium mr-3"
+          isPending ? "pending" : isActive ? "active text-base font-semibold text-orange-400 mr-3" : " text-base font-medium mr-3"
         }
       >
         Register
       </NavLink>
       <NavLink
-        to="/create"
+        to="/createShop"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "active text-base font-medium text-green-400 mr-3" : " text-base font-medium mr-3"
+          isPending ? "pending" : isActive ? "active text-base font-semibold text-orange-400 mr-3" : " text-base font-medium mr-3"
         }
       >
         Create Shop
@@ -89,7 +96,7 @@ const Navbar = () => {
           {user ? (
             <>
               {" "}
-              <a onClick={handleLogOut} className="btn btn-success">
+              <a onClick={handleLogOut} className="btn btn-success btn-outline">
                 Log out
               </a>{" "}
             </>
@@ -97,7 +104,7 @@ const Navbar = () => {
             <>
               {" "}
               <Link to="/login">
-                <button className="btn btn-warning">Login</button>
+                <button className="btn btn-warning btn-outline">Login</button>
               </Link>{" "}
             </>
           )}

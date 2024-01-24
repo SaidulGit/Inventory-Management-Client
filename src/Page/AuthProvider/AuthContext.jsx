@@ -11,15 +11,15 @@ const AuthContext = ({children}) => {
 const [user,setUser]=useState(null)
 const [loading,setLoading]= useState(true)
 
-const createUser =(email,password)=>{
+const createUser =(email,password,name,photo)=>{
     setLoading(true)
-return createUserWithEmailAndPassword (auth,email,password);
+return createUserWithEmailAndPassword (auth,email,password,name,photo);
 }
 
 
-const signIn = (name,email,password)=> {
+const sign = (email,password)=> {
   setLoading(true);
-  return signInWithEmailAndPassword (auth,name,email,password);
+  return signInWithEmailAndPassword (auth,email,password);
 }
 
 const logOut = () => {
@@ -42,7 +42,7 @@ useEffect(()=>{
    const userInfo={
     createUser,
     loading,
-    signIn,
+    sign,
     logOut,
     user
     }

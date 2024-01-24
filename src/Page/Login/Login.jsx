@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/login/login-pic.png";
 import { Link, useNavigate } from "react-router-dom";
+import { Context } from "../AuthProvider/AuthContext";
+import Swal from "sweetalert2";
 
 const Login = () => {
 const navigate = useNavigate()
+const {sign} = useContext(Context)
 
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    const info = { email, password };
-    console.log(info);
+    console.log(email,password);
+
+   sign(email,password)
+    .then(res => console.log(res.user))
+    .catch(error => console.error(error))
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Login Success",
+      showConfirmButton: false,
+      timer: 1500
+    })
     e.target.reset();
     navigate("/")
   };
