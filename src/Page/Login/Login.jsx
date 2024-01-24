@@ -3,10 +3,18 @@ import logo from "../../assets/login/login-pic.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../AuthProvider/AuthContext";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
 const navigate = useNavigate()
-const {sign} = useContext(Context)
+const {sign,googleSignin} = useContext(Context)
+
+const handleGoogle = () => {
+  googleSignin()
+  .then(res =>console.log(res.user))
+  .catch(error => console.error(error))
+  navigate("/")
+}
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -69,6 +77,10 @@ const {sign} = useContext(Context)
                   type="submit"
                   value="Login"
                 />
+              </div>
+              <div className="flex flex-col w-full">
+              <div className="divider divider-accent">OR</div>
+              <div className="text-center"><button onClick={handleGoogle} className="btn btn-outline"> <p className="text-xl"><FcGoogle /></p> Sign in with Google</button></div>
               </div>
             </form>
             <p className='mb-2 text-base font-normal text-center'>Don't have an account. <Link className='text-orange-400 font-bold' to='/signUP'>Sign Up</Link> </p>

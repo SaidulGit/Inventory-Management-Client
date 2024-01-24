@@ -8,10 +8,10 @@ const SellOff = () => {
   return (
     <div className="flex flex-col justify-center mx-auto items-center bg-orange-100">
       <div className="flex gap-10">
-        <img className="w-72" src={img1} alt="" />
-        <img className="w-72" src={img2} alt="" />
-        <img className="w-72" src={img3} alt="" />
-        <img className="w-72" src={img4} alt="" />
+        <img className="md:w-72" src={img1} alt="" />
+        <img className="md:w-72" src={img2} alt="" />
+        <img className="md:w-72" src={img3} alt="" />
+        <img className="md:w-72" src={img4} alt="" />
       </div>
       <div className="text-7xl font-extrabold text-orange-400">
         <span className="text-green-600">50%</span> OFF

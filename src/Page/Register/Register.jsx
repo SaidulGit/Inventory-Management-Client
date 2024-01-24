@@ -3,10 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import Regis from "../../assets/Register/regist.png";
 import { Context } from "../AuthProvider/AuthContext";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
     const navigate = useNavigate()
-    const { createUser}= useContext(Context)
+    const { createUser,googleSignin}= useContext(Context)
+
+    const handleGoogle = () => {
+      googleSignin()
+      .then(res =>console.log(res.user))
+      .catch(error => console.error(error))
+      navigate("/")
+    }
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -95,6 +103,10 @@ const Register = () => {
                   type="submit"
                   value="Sign UP"
                 />
+              </div>
+              <div className="flex flex-col w-full">
+              <div className="divider divider-accent">OR</div>
+              <div className="text-center"><button onClick={handleGoogle} className="btn btn-outline"> <p className="text-xl"><FcGoogle /></p> Sign in with Google</button></div>
               </div>
             </form>
             <p className="mb-2 text-base font-normal text-center">

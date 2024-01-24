@@ -6,13 +6,14 @@ import { useContext } from "react";
 import { Context } from "../../Page/AuthProvider/AuthContext";
 
 const Navbar = () => {
-  const {user,logOut} = useContext(Context);
+  const {user,logOut,googleSignout} = useContext(Context);
   const handleLogOut = ()=> {
     logOut()
     .then(()=>{})
     .catch(error => {
       console.log(error)
     })
+
     Swal.fire({
       position: "center",
       icon: "success",
@@ -20,7 +21,9 @@ const Navbar = () => {
       showConfirmButton: false,
       timer: 1500
     })
-
+   googleSignout()
+   .then(res => res.user)
+   .catch(error => console.error(error))
   }
 
   const Navitems = (
