@@ -6,7 +6,7 @@ import img4 from "../../assets/image/pic1.jpg";
 
 const SellOff = () => {
   return (
-    <div className="flex flex-col justify-center mx-auto items-center bg-orange-100">
+    <div className="flex flex-col justify-center mx-auto items-center mt-7 bg-orange-100">
       <div className="flex gap-10">
         <img className="md:w-72" src={img1} alt="" />
         <img className="md:w-72" src={img2} alt="" />

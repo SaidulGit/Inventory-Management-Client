@@ -4,15 +4,26 @@ import Regis from "../../assets/Register/regist.png";
 import { Context } from "../AuthProvider/AuthContext";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
+import UseAxiosPublic from "../../Components/UseAxiosjs/UseAxiosPublic";
 
 const Register = () => {
     const navigate = useNavigate()
-    const { createUser,googleSignin}= useContext(Context)
+    const { createUser,googleSignin,updateUserProfile}= useContext(Context)
+  const axiosPublic = UseAxiosPublic()
 
     const handleGoogle = () => {
       googleSignin()
-      .then(res =>console.log(res.user))
+      .then(res => {
+        if(res.user){
+          const email = res.user.email
+          const name = res.user.displayName
+         const user= {email,name}
+          axiosPublic.post("/user",user)
+          .then(res => console.log(res.data))
+        }
+      })
       .catch(error => console.error(error))
+
       navigate("/")
     }
 
@@ -24,9 +35,21 @@ const Register = () => {
     const name = form.name.value;
     const photo = form.photo.value;
     const infoUser = { email, password, name, photo };
-    console.log(infoUser)
-    createUser(email,password,name,photo)
-    .then(res=> console.log(res.user))
+    console.log(infoUser);
+    const data = {name,email}
+    
+    createUser(email,password)
+    .then(res=>{
+      if(res.user){
+        axiosPublic.post("/user",data)
+   .then(res => console.log(res.data))
+      }
+    })
+    
+    updateUserProfile(name,photo)
+    .then(res =>{
+      console.log("Profile Updated",  res.user)
+    })
     .catch(error=> console.log(error))
     e.target.reset();
     Swal.fire({
@@ -36,6 +59,7 @@ const Register = () => {
       showConfirmButton: false,
       timer: 1500
     })
+    
     navigate("/")
   };
 

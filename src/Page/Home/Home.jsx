@@ -1,6 +1,7 @@
 import React from 'react'
 import Carusel from '../../Components/Carusel/Carusel'
 import SellOff from '../../Components/SellOff/SellOff'
+import Favourite from '../../Components/Shop/favourite'
 
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <div>
      <Carusel></Carusel>
      <SellOff></SellOff>
+     <Favourite></Favourite>
     </div>
   )
 }

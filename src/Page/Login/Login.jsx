@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import logo from "../../assets/login/login-pic.png";
 import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../AuthProvider/AuthContext";
+
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
+import { Context } from "../AuthProvider/AuthContext";
 
 const Login = () => {
 const navigate = useNavigate()
 const {sign,googleSignin} = useContext(Context)
+const from = location.state?.from?.pathname || "/";
 
 const handleGoogle = () => {
   googleSignin()
@@ -34,7 +36,7 @@ const handleGoogle = () => {
       timer: 1500
     })
     e.target.reset();
-    navigate("/")
+    navigate(from, { replace: true })
   };
   return (
     <div className="hero min-h-screen bg-base-200">

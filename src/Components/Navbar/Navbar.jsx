@@ -1,30 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
-import logo1 from "../../assets/Chittagong.png"
+
 import logo2 from "../../assets/micro_png.png"
-import Swal from "sweetalert2";
 import { useContext } from "react";
 import { Context } from "../../Page/AuthProvider/AuthContext";
+import NavShort from "./NavShort";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const {user,logOut,googleSignout} = useContext(Context);
-  const handleLogOut = ()=> {
-    logOut()
-    .then(()=>{})
-    .catch(error => {
-      console.log(error)
-    })
-
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Logout",
-      showConfirmButton: false,
-      timer: 1500
-    })
-   googleSignout()
-   .then(res => res.user)
-   .catch(error => console.error(error))
-  }
+  const {user,} = useContext(Context);
+  
 
   const Navitems = (
     <>
@@ -36,12 +19,7 @@ const Navbar = () => {
       >
         Home
       </NavLink>
-      { user?.email ? 
-       <>
-       <li> <Link onClick={handleLogOut} to='/'>log out </Link> </li>
-       </> :
-       <li> <Link to='/login'>login </Link> </li>
-     }
+      
       <NavLink
         to="/signUP"
         className={({ isActive, isPending }) =>
@@ -61,7 +39,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-slate-100">
+    <div className="fixed z-10 navbar w-[1395px] mx-auto bg-slate-100">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -95,22 +73,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-          <h2 className="mr-2">{user && <p>{user.email} </p>}</h2>
-          {user ? (
-            <>
-              {" "}
-              <a onClick={handleLogOut} className="btn btn-success btn-outline">
-                Log out
-              </a>{" "}
-            </>
-          ) : (
-            <>
-              {" "}
-              <Link to="/login">
-                <button className="btn btn-warning btn-outline">Login</button>
-              </Link>{" "}
-            </>
-          )}
+          <h2 className="mr-2">{user && <p>{user.displayName} </p>}</h2>
+          <NavShort></NavShort>
         </div>
     </div>
   );
