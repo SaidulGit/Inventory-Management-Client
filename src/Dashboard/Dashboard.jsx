@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+import Footer from "../Components/Footer/Footer";
 
 const Dashboard = () => {
   return (
@@ -26,7 +27,7 @@ const Dashboard = () => {
           <Outlet></Outlet>
         </div>
       </div>
-      <div className="bg-zinc-400 w-full h-60">Footer</div>
+      <Footer></Footer>
     </div>
   );
 };

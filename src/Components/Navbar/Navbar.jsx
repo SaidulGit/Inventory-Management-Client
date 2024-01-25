@@ -36,6 +36,15 @@ const Navbar = () => {
       >
         Create Shop
       </NavLink>
+      <NavLink 
+      target="blank"
+        to="https://www.youtube.com/watch?v=A_uorH34hyw"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active text-base font-semibold text-orange-400 mr-3" : " text-base font-medium mr-3"
+        }
+      >
+        Watch Demo
+      </NavLink>
     </>
   );
   return (
